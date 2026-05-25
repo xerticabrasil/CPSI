@@ -204,31 +204,63 @@ input:focus { border-color: #00BEFF !important; background: rgba(255,255,255,0.0
                 </div>
                 
                 <div class="lg:col-span-8">
-                    <form class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="col-span-full md:col-span-1">
-                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Nome Completo</label>
-                            <input type="text" placeholder="Nome do Gestor" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
-                        </div>
-                        <div class="col-span-full md:col-span-1">
-                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">E-mail Corporativo</label>
-                            <input type="email" placeholder="exemplo@orgao.gov.br" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
-                        </div>
-                        <div class="col-span-full md:col-span-1">
-                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Cargo Atual</label>
-                            <input type="text" placeholder="Ex: Diretor de Tecnologia" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
-                        </div>
-                        <div class="col-span-full md:col-span-1">
-                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Órgão / Instituição</label>
-                            <input type="text" placeholder="Ex: Tribunal de Justiça" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
-                        </div>
-                        <div class="col-span-full">
-                            <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Telefone / WhatsApp</label>
-                            <input type="tel" placeholder="(00) 00000-0000" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
-                        </div>
-                        <button type="button" class="col-span-full bg-brand-blue hover:bg-white text-brand-dark font-black text-xs uppercase tracking-widest py-5 rounded-2xl transition-all shadow-[0_15px_30px_rgba(0,190,255,0.2)]">
-                            Solicitar Guia Completo
-                        </button>
-                    </form>
+                    <!-- Script para lidar com o envio e redirecionamento -->
+                    <script>
+                        var formSubmitted = false;
+                        function handleFormSuccess() {
+                            if(formSubmitted) {
+                                // Ocultar form
+                                document.getElementById('form-container').style.display = 'none';
+                                // Mostrar mensagem
+                                document.getElementById('success-message').style.display = 'block';
+                            }
+                        }
+                    </script>
+                    
+                    <!-- Iframe oculto para receber a resposta do Google -->
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleFormSuccess()"></iframe>
+
+                    <div id="form-container">
+                        <!-- Redirecionamento modificado para download direto evitando bloqueios -->
+                        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdU_5FLUwZvh3wrXpb1dxr069f6Hz6bRmxBbxwiy-xci-TaDA/formResponse" method="POST" target="hidden_iframe" onsubmit="formSubmitted=true; window.location.href='https://drive.google.com/uc?export=download&id=17c4uIa8vHaPhM9egVUUqSYwsDnDyFAbz';" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="col-span-full md:col-span-1">
+                                <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Nome Completo *</label>
+                                <input type="text" name="entry.222612875" required placeholder="Nome do Gestor" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
+                            </div>
+                            <div class="col-span-full md:col-span-1">
+                                <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">E-mail Corporativo *</label>
+                                <input type="email" name="entry.1233741056" required placeholder="exemplo@orgao.gov.br" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
+                            </div>
+                            <div class="col-span-full md:col-span-1">
+                                <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Cargo Atual *</label>
+                                <input type="text" name="entry.1022544498" required placeholder="Ex: Diretor de Tecnologia" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
+                            </div>
+                            <div class="col-span-full md:col-span-1">
+                                <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Órgão / Instituição *</label>
+                                <input type="text" name="entry.1320321290" required placeholder="Ex: Tribunal de Justiça" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
+                            </div>
+                            <div class="col-span-full">
+                                <label class="text-[10px] uppercase font-bold text-slate-500 ml-4 mb-2 block tracking-widest">Telefone / WhatsApp *</label>
+                                <input type="tel" name="entry.1799966453" required placeholder="(00) 00000-0000" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none transition-all">
+                            </div>
+                            <button type="submit" class="col-span-full bg-brand-blue hover:bg-white text-brand-dark font-black text-xs uppercase tracking-widest py-5 rounded-2xl transition-all shadow-[0_15px_30px_rgba(0,190,255,0.2)]">
+                                Solicitar Guia Completo
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Mensagem de Sucesso (Oculta por padrão) -->
+                    <div id="success-message" style="display:none;" class="text-center py-10 px-6 bg-white/5 border border-white/10 rounded-3xl">
+                        <span class="material-symbols-outlined text-brand-blue text-5xl mb-4">task_alt</span>
+                        <h4 class="text-2xl font-black text-white mb-2">Guia Liberado!</h4>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                            Seus dados foram enviados e o download do arquivo foi iniciado. <br>Caso o download não comece automaticamente, utilize o botão abaixo.
+                        </p>
+                        <a href="https://drive.google.com/uc?export=download&id=17c4uIa8vHaPhM9egVUUqSYwsDnDyFAbz" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-blue/10 hover:bg-brand-blue/20 text-brand-blue border border-brand-blue/30 font-bold text-xs uppercase tracking-widest rounded-xl transition-all">
+                            Baixar o E-book <span class="material-symbols-outlined text-sm">download</span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
